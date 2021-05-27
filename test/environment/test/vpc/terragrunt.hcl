@@ -5,7 +5,7 @@ locals {
 }
 
 terraform {
-  source = "github.com/hekonsek/clails-terraform-vpc?ref=0.0.0"
+  source = "github.com/hekonsek/terraform-vpc?ref=v1"
 }
 
 include {
