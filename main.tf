@@ -1,32 +1,27 @@
 module "eks" {
   source       = "terraform-aws-modules/eks/aws"
-  cluster_version = "1.17"
+  version = "16.2.0"
+  cluster_version = "1.18"
   cluster_name = var.cluster_name
   subnets      = var.vpc_private_subnets
-  enable_irsa = true
-
-  tags = {
-    Environment = "training"
-    GithubRepo  = "terraform-aws-eks"
-    GithubOrg   = "terraform-aws-modules"
-  }
-
   vpc_id = var.vpc_id
+  enable_irsa = true
 
   worker_groups = [
     {
-      name                          = "worker-group-1"
-      instance_type                 = "t2.small"
-      additional_userdata           = "echo foo bar"
-      asg_desired_capacity          = 2
+      name                          = "ondemand"
+      instance_type                 = "m5.large"
+      asg_desired_capacity          = 3
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     },
     {
-      name                          = "worker-group-2"
-      instance_type                 = "t2.medium"
-      additional_userdata           = "echo foo bar"
+      name                = "spot"
+      spot_price          = "0.199"
+      instance_type       = "m5.large"
+      asg_desired_capacity = 3
+      kubelet_extra_args  = "--node-labels=node.kubernetes.io/lifecycle=spot"
       additional_security_group_ids = [aws_security_group.worker_group_mgmt_two.id]
-      asg_desired_capacity          = 1
+      suspended_processes = ["AZRebalance"]
     },
   ]
 }

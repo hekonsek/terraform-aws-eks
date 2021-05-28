@@ -18,8 +18,8 @@ include {
 
 inputs = {
   cluster_name = "${local.environment_full}"
-  vpc_id = dependency.vpc.outputs.vpc_id
-  vpc_private_subnets = dependency.vpc.outputs.vpc_private_subnets
+  vpc_id = dependency.vpc.outputs.vpc.vpc_id
+  vpc_private_subnets = dependency.vpc.outputs.vpc.private_subnets
 }
 
 generate "provider" {
@@ -35,7 +35,7 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "kubernetes" {
-  load_config_file       = "false"
+  # load_config_file       = "false"
   host                   = data.aws_eks_cluster.cluster.endpoint
   token                  = data.aws_eks_cluster_auth.cluster.token
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)

@@ -2,19 +2,28 @@ package clails_vpc
 
 import "testing"
 import "github.com/gruntwork-io/terratest/modules/terraform"
-import "github.com/stretchr/testify/assert"
+import "github.com/gruntwork-io/terratest/modules/test-structure"
 
-func TestOutputs(t *testing.T) {
+func TestEks(t *testing.T) {
 	// Given
+	defer test_structure.RunTestStage(t, "destroy_vpc", func() {
+		destroyVpc(t)
+	})
+	test_structure.RunTestStage(t, "create_vpc", func() {
+		createVpc(t)
+	})
+}
+
+func createVpc(t *testing.T) {
 	terraformOptions := &terraform.Options{
-		TerraformDir: "test",
+		TerraformDir: "test/vpc",
 	}
-	defer terraform.Destroy(t, terraformOptions)
-
-	// When
 	terraform.InitAndApply(t, terraformOptions)
+}
 
-	// Then
-	clusterEndpoint := terraform.OutputRequired(t, terraformOptions, "cluster_endpoint")
-	assert.Equal(t, "Hello, World!", clusterEndpoint)
+func destroyVpc(t *testing.T) {
+	terraformOptions := &terraform.Options{
+		TerraformDir: "test/vpc",
+	}
+	terraform.Destroy(t, terraformOptions)
 }
