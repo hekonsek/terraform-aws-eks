@@ -1,23 +1,14 @@
-locals {
-  project = read_terragrunt_config("../../../terragrunt.hcl")
-  environment = read_terragrunt_config("../terragrunt.hcl")
-  environment_full = "${local.project.locals.project}-${local.environment.locals.environment}"
+terraform {
+  source = "./../.."
 }
+
 
 dependency "vpc" {
   config_path = "../vpc"
 }
 
-terraform {
-  source = "../../../.."
-}
-
-include {
-  path = find_in_parent_folders()
-}
-
 inputs = {
-  cluster_name = "${local.environment_full}"
+  cluster_name = "terraform-aws-eks-test"
   vpc_id = dependency.vpc.outputs.vpc.vpc_id
   vpc_private_subnets = dependency.vpc.outputs.vpc.private_subnets
 }
