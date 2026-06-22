@@ -40,6 +40,7 @@ module "eks" {
 
 The VPC's private subnets must have egress access. The referenced VPC module provides this through its NAT gateway by default.
 
+<!-- BEGIN_TF_DOCS -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -70,6 +71,7 @@ The VPC's private subnets must have egress access. The referenced VPC module pro
 | `node_group_name` / `node_group_arn` | Managed node group identifiers |
 | `aws_eks_update_kubeconfig_command` | Command to configure `kubectl` access |
 | `aws_console_cluster_url` | AWS Console link for the cluster |
+<!-- END_TF_DOCS -->
 
 ## Testing
 
@@ -85,4 +87,3 @@ Set `TERRATEST_SKIP_DEPLOY=1` to compile the Terratest package without creating 
 ## License
 
 MIT
-
