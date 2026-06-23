@@ -112,6 +112,11 @@ resource "aws_eks_addon" "kube_proxy" {
   addon_name   = "kube-proxy"
 }
 
+resource "aws_eks_addon" "metrics_server" {
+  cluster_name = aws_eks_cluster.cluster.name
+  addon_name   = "metrics-server"
+}
+
 resource "aws_eks_node_group" "default" {
   cluster_name    = aws_eks_cluster.cluster.name
   node_group_name = var.node_group_name

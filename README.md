@@ -6,7 +6,7 @@ Features:
 
 - Creates the EKS control plane and its IAM role.
 - Creates one standard managed node group in private subnets, with the IAM permissions required for worker nodes, VPC CNI, and ECR image pulls.
-- Installs the `vpc-cni`, `coredns`, and `kube-proxy` EKS add-ons.
+- Installs the `vpc-cni`, `coredns`, `kube-proxy`, and `metrics-server` EKS add-ons.
 - Supports private API access and optional public API access.
 - Includes a live Terratest integration test that provisions [terraform-aws-vpc](https://github.com/hekonsek/terraform-aws-vpc) and passes its private subnet IDs to EKS.
 
