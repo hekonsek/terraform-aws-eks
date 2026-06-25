@@ -82,6 +82,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type for the managed node group: ON\_DEMAND or SPOT. | `string` | `"ON_DEMAND"` | no |
+| <a name="input_coredns_addon_version"></a> [coredns\_addon\_version](#input\_coredns\_addon\_version) | CoreDNS EKS add-on version. | `string` | `"v1.14.3-eksbuild.3"` | no |
 | <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired number of nodes in the managed node group. | `number` | `1` | no |
 | <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | Disk size in GiB for each managed node. | `number` | `20` | no |
 | <a name="input_enabled_cluster_log_types"></a> [enabled\_cluster\_log\_types](#input\_enabled\_cluster\_log\_types) | Control plane log types to send to CloudWatch Logs. | `list(string)` | `[]` | no |
