@@ -26,7 +26,7 @@ variable "private_subnet_ids" {
 variable "kubernetes_version" {
   description = "Optional Kubernetes version for the EKS cluster. Leave null to use the AWS default supported version."
   type        = string
-  default     = null
+  default     = "1.36"
 }
 
 variable "node_group_name" {
@@ -135,4 +135,3 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
-
