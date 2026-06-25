@@ -29,6 +29,12 @@ variable "kubernetes_version" {
   default     = "1.36"
 }
 
+variable "coredns_addon_version" {
+  description = "CoreDNS EKS add-on version."
+  type        = string
+  default     = "v1.14.3-eksbuild.3"
+}
+
 variable "node_group_name" {
   description = "Name of the standard EKS managed node group."
   type        = string
