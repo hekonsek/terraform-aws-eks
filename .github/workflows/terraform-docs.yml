@@ -26,9 +26,11 @@ jobs:
           output-method: inject
           working-dir: .
 
+      - name: Fix workspace ownership
+        run: sudo chown -R "$USER:$USER" .git README.md
+
       - name: Commit generated documentation
         uses: stefanzweifel/git-auto-commit-action@v7.1.0
         with:
           commit_message: "docs: update terraform-docs in README"
           file_pattern: README.md
-
