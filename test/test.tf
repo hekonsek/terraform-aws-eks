@@ -23,10 +23,11 @@ module "vpc" {
 module "eks" {
   source = "./.."
 
-  name               = var.cluster_name
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnet_ids
-  instance_types     = var.instance_types
+  name                = var.cluster_name
+  vpc_id              = module.vpc.vpc_id
+  private_subnet_ids  = module.vpc.private_subnet_ids
+  authentication_mode = "API_AND_CONFIG_MAP"
+  instance_types      = var.instance_types
 }
 
 output "cluster_name" {
@@ -44,4 +45,3 @@ output "node_group_name" {
 output "node_group_arn" {
   value = module.eks.node_group_arn
 }
-

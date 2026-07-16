@@ -8,6 +8,7 @@ Features:
 - Creates one standard managed node group in private subnets, with the IAM permissions required for worker nodes, VPC CNI, and ECR image pulls.
 - Installs the `vpc-cni`, `coredns`, `kube-proxy`, and `metrics-server` EKS add-ons.
 - Supports private API access and optional public API access.
+- Supports EKS access entries through configurable cluster authentication modes.
 - Includes a live Terratest integration test that provisions [terraform-aws-vpc](https://github.com/hekonsek/terraform-aws-vpc) and passes its private subnet IDs to EKS.
 
 ## Usage
@@ -31,10 +32,11 @@ module "eks" {
   vpc_id             = module.vpc.vpc_id
   private_subnet_ids = module.vpc.private_subnet_ids
 
-  instance_types = ["t3.medium"]
-  desired_size   = 1
-  min_size       = 1
-  max_size       = 2
+  authentication_mode = "API_AND_CONFIG_MAP"
+  instance_types      = ["t3.medium"]
+  desired_size        = 1
+  min_size            = 1
+  max_size            = 2
 }
 ```
 

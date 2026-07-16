@@ -29,6 +29,17 @@ variable "kubernetes_version" {
   default     = "1.36"
 }
 
+variable "authentication_mode" {
+  description = "EKS cluster authentication mode. Use API_AND_CONFIG_MAP or API to enable EKS access entries."
+  type        = string
+  default     = "CONFIG_MAP"
+
+  validation {
+    condition     = contains(["CONFIG_MAP", "API_AND_CONFIG_MAP", "API"], var.authentication_mode)
+    error_message = "authentication_mode must be CONFIG_MAP, API_AND_CONFIG_MAP, or API."
+  }
+}
+
 variable "coredns_addon_version" {
   description = "CoreDNS EKS add-on version."
   type        = string
