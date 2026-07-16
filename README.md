@@ -83,6 +83,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_authentication_mode"></a> [authentication\_mode](#input\_authentication\_mode) | EKS cluster authentication mode. Use API\_AND\_CONFIG\_MAP or API to enable EKS access entries. | `string` | `"CONFIG_MAP"` | no |
 | <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Capacity type for the managed node group: ON\_DEMAND or SPOT. | `string` | `"ON_DEMAND"` | no |
 | <a name="input_coredns_addon_version"></a> [coredns\_addon\_version](#input\_coredns\_addon\_version) | CoreDNS EKS add-on version. | `string` | `"v1.14.3-eksbuild.3"` | no |
 | <a name="input_desired_size"></a> [desired\_size](#input\_desired\_size) | Desired number of nodes in the managed node group. | `number` | `1` | no |
